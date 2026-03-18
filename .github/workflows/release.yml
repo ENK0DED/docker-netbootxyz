@@ -21,7 +21,7 @@ jobs:
       
     - name: Get latest Webapp release version
       run: |
-        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/netbootxyz/webapp/releases/latest" | jq -r '. | .tag_name')
+        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/ENK0DED/webapp/releases/latest" | jq -r '. | .tag_name')
         echo "WEBAPP_RELEASE=${WEBAPP_RELEASE}" >> $GITHUB_ENV
         
     - name: Set up Docker Buildx
@@ -114,9 +114,9 @@ jobs:
           maintainer=antonym
           org.opencontainers.image.created=${{ env.GITHUB_DATE }}
           org.opencontainers.image.authors=netboot.xyz
-          org.opencontainers.image.url=https://github.com/netbootxyz/docker-netbootxyz/packages
+          org.opencontainers.image.url=https://github.com/ENK0DED/docker-netbootxyz/packages
           org.opencontainers.image.documentation=https://netboot.xyz
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
           org.opencontainers.image.version=${{ env.VERSION_TAG }}
           org.opencontainers.image.revision=${{ env.GITHUB_SHA }}
           org.opencontainers.image.vendor=netboot.xyz

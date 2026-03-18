@@ -36,7 +36,7 @@ jobs:
 
     - name: Get latest Webapp release version
       run: |
-        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/netbootxyz/webapp/releases/latest" | jq -r '. | .tag_name')
+        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/ENK0DED/webapp/releases/latest" | jq -r '. | .tag_name')
         echo "WEBAPP_RELEASE=${WEBAPP_RELEASE}" >> $GITHUB_ENV
 
     - name: Build and push PR test image
@@ -60,7 +60,7 @@ jobs:
           org.opencontainers.image.description=netboot.xyz PR test image
           org.opencontainers.image.version=pr-${{ github.event.number }}
           org.opencontainers.image.revision=${{ github.sha }}
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.33.1
