@@ -81,7 +81,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ secrets.GHCR_USER }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push (amd64)
       id: build
@@ -150,7 +150,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ secrets.GHCR_USER }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push (arm64)
       id: build
@@ -216,7 +216,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ secrets.GHCR_USER }}
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Download digests
       uses: actions/download-artifact@v8
