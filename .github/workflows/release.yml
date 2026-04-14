@@ -31,14 +31,14 @@ jobs:
     - name: Get latest Webapp release version
       id: webapp
       run: |
-        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/netbootxyz/webapp/releases/latest" | jq -r '. | .tag_name')
+        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/ENK0DED/webapp/releases/latest" | jq -r '. | .tag_name')
         echo "webapp_release=${WEBAPP_RELEASE}" >> $GITHUB_OUTPUT
 
     - name: Determine version numbers
       id: version_check
       run: |
         WEBAPP_RELEASE="${{ steps.webapp.outputs.webapp_release }}"
-        IMAGE=netbootxyz/netbootxyz
+        IMAGE=ENK0DED/netbootxyz
         TOKEN=$(curl -sX GET \
             "https://ghcr.io/token?scope=repository%3Anetbootxyz%2Fnetbootxyz%3Apull" \
             | jq -r '.token')
@@ -136,9 +136,9 @@ jobs:
           maintainer=antonym
           org.opencontainers.image.created=${{ needs.setup.outputs.build_date }}
           org.opencontainers.image.authors=netboot.xyz
-          org.opencontainers.image.url=https://github.com/netbootxyz/docker-netbootxyz/packages
+          org.opencontainers.image.url=https://github.com/ENK0DED/docker-netbootxyz/packages
           org.opencontainers.image.documentation=https://netboot.xyz
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
           org.opencontainers.image.version=${{ needs.setup.outputs.version_tag }}
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.vendor=netboot.xyz
@@ -146,7 +146,7 @@ jobs:
           org.opencontainers.image.ref.name=${{ github.sha }}
           org.opencontainers.image.title=netbootxyz
           org.opencontainers.image.description=netboot.xyz official docker container - Your favorite operating systems in one place. A network-based bootable operating system installer based on iPXE.
-        outputs: type=image,name=ghcr.io/netbootxyz/netbootxyz,push-by-digest=true,name-canonical=true,push=true
+        outputs: type=image,name=ghcr.io/ENK0DED/netbootxyz,push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       run: |
@@ -203,9 +203,9 @@ jobs:
           maintainer=antonym
           org.opencontainers.image.created=${{ needs.setup.outputs.build_date }}
           org.opencontainers.image.authors=netboot.xyz
-          org.opencontainers.image.url=https://github.com/netbootxyz/docker-netbootxyz/packages
+          org.opencontainers.image.url=https://github.com/ENK0DED/docker-netbootxyz/packages
           org.opencontainers.image.documentation=https://netboot.xyz
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
           org.opencontainers.image.version=${{ needs.setup.outputs.version_tag }}
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.vendor=netboot.xyz
@@ -213,7 +213,7 @@ jobs:
           org.opencontainers.image.ref.name=${{ github.sha }}
           org.opencontainers.image.title=netbootxyz
           org.opencontainers.image.description=netboot.xyz official docker container - Your favorite operating systems in one place. A network-based bootable operating system installer based on iPXE.
-        outputs: type=image,name=ghcr.io/netbootxyz/netbootxyz,push-by-digest=true,name-canonical=true,push=true
+        outputs: type=image,name=ghcr.io/ENK0DED/netbootxyz,push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       run: |
@@ -261,20 +261,20 @@ jobs:
       run: |
         VERSION_TAG="${{ needs.setup.outputs.version_tag }}"
         docker buildx imagetools create \
-          -t "ghcr.io/netbootxyz/netbootxyz:latest" \
-          -t "ghcr.io/netbootxyz/netbootxyz:${{ github.sha }}" \
-          -t "ghcr.io/netbootxyz/netbootxyz:${VERSION_TAG}" \
-          $(printf 'ghcr.io/netbootxyz/netbootxyz@sha256:%s ' *)
+          -t "ghcr.io/ENK0DED/netbootxyz:latest" \
+          -t "ghcr.io/ENK0DED/netbootxyz:${{ github.sha }}" \
+          -t "ghcr.io/ENK0DED/netbootxyz:${VERSION_TAG}" \
+          $(printf 'ghcr.io/ENK0DED/netbootxyz@sha256:%s ' *)
 
     - name: Create manifest list and push (Docker Hub)
       working-directory: /tmp/digests
       run: |
         VERSION_TAG="${{ needs.setup.outputs.version_tag }}"
         docker buildx imagetools create \
-          -t "netbootxyz/netbootxyz:latest" \
-          -t "netbootxyz/netbootxyz:${{ github.sha }}" \
-          -t "netbootxyz/netbootxyz:${VERSION_TAG}" \
-          $(printf 'ghcr.io/netbootxyz/netbootxyz@sha256:%s ' *)
+          -t "ENK0DED/netbootxyz:latest" \
+          -t "ENK0DED/netbootxyz:${{ github.sha }}" \
+          -t "ENK0DED/netbootxyz:${VERSION_TAG}" \
+          $(printf 'ghcr.io/ENK0DED/netbootxyz@sha256:%s ' *)
 
   tag:
     needs: [setup, manifest]

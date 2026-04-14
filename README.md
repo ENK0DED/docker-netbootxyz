@@ -1,13 +1,13 @@
 # docker-netbootxyz
 
-[![Release Status](https://github.com/netbootxyz/docker-netbootxyz/actions/workflows/release.yml/badge.svg)](https://github.com/netbootxyz/docker-netbootxyz/actions/workflows/release.yml)
+[![Release Status](https://github.com/ENK0DED/docker-netbootxyz/actions/workflows/release.yml/badge.svg)](https://github.com/ENK0DED/docker-netbootxyz/actions/workflows/release.yml)
 [![Discord](https://img.shields.io/discord/425186187368595466)](https://discord.gg/An6PA2a)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/netbootxyz/docker-netbootxyz)
-[![Docker Pulls](https://img.shields.io/docker/pulls/netbootxyz/netbootxyz)](https://hub.docker.com/r/netbootxyz/netbootxyz)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ENK0DED/docker-netbootxyz)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ENK0DED/netbootxyz)](https://hub.docker.com/r/ENK0DED/netbootxyz)
 
 ## Overview
 
-The [netboot.xyz docker image](https://github.com/netbootxyz/docker-netbootxyz) allows you to easily set up a local instance of netboot.xyz. The container is a small helper application written in node.js. It provides a simple web interface for editing menus on the fly, retrieving the latest menu release of netboot.xyz, and enables mirroring the downloadable assets from Github to your location machine for faster booting of assets.
+The [netboot.xyz docker image](https://github.com/ENK0DED/docker-netbootxyz) allows you to easily set up a local instance of netboot.xyz. The container is a small helper application written in node.js. It provides a simple web interface for editing menus on the fly, retrieving the latest menu release of netboot.xyz, and enables mirroring the downloadable assets from Github to your location machine for faster booting of assets.
 
 ![netboot.xyz webapp](https://netboot.xyz/images/netboot.xyz-webapp.jpg)
 
@@ -15,7 +15,7 @@ It is a great tool for developing and testing custom changes to the menus. If yo
 
 The container is built upon Alpine Linux and contains several components:
 
-* netboot.xyz [webapp](https://github.com/netbootxyz/webapp)
+* netboot.xyz [webapp](https://github.com/ENK0DED/webapp)
 * Nginx for hosting local assets from the container
 * tftp-hpa
 * syslog for providing tftp activity logs
@@ -41,13 +41,13 @@ sudo apt install docker.io
 #### From Github Container Registry
 
 ```shell
-docker pull ghcr.io/netbootxyz/netbootxyz
+docker pull ghcr.io/ENK0DED/netbootxyz
 ```
 
 #### From Docker Hub
 
 ```shell
-docker pull netbootxyz/netbootxyz
+docker pull ENK0DED/netbootxyz
 ```
 
 The following snippets are examples of starting up the container.
@@ -68,13 +68,13 @@ docker run -d \
   -v /local/path/to/config:/config   `# optional` \
   -v /local/path/to/assets:/assets   `# optional` \
   --restart unless-stopped \
-  ghcr.io/netbootxyz/netbootxyz
+  ghcr.io/ENK0DED/netbootxyz
 ```
 
 #### Updating the image with docker-cli
 
 ```shell
-docker pull ghcr.io/netbootxyz/netbootxyz   # pull the latest image down
+docker pull ghcr.io/ENK0DED/netbootxyz   # pull the latest image down
 docker stop netbootxyz                      # stop the existing container
 docker rm netbootxyz                        # remove the image
 docker run -d ...                           # previously ran start command
@@ -84,7 +84,7 @@ Start the container with the same parameters used above. If the same folders are
 
 ### docker-compose
 
-1. Copy [docker-compose.yml.example](https://github.com/netbootxyz/docker-netbootxyz/blob/master/docker-compose.yml.example) to docker-compose.yml
+1. Copy [docker-compose.yml.example](https://github.com/ENK0DED/docker-netbootxyz/blob/master/docker-compose.yml.example) to docker-compose.yml
 1. Edit as needed
 1. Run `docker compose up -d netbootxyz` to start containers in the background
 

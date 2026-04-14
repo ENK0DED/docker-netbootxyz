@@ -14,12 +14,12 @@ RUN apk add --no-cache --virtual .build-deps \
     && mkdir /app \
     # Determine webapp version if not provided
     && if [ -z "${WEBAPP_VERSION+x}" ]; then \
-        WEBAPP_VERSION=$(curl -sX GET "https://api.github.com/repos/netbootxyz/webapp/releases/latest" \
+        WEBAPP_VERSION=$(curl -sX GET "https://api.github.com/repos/ENK0DED/webapp/releases/latest" \
         | awk '/tag_name/{print $4;exit}' FS='[""]'); \
     fi \
     # Download and extract webapp
     && curl -o /tmp/webapp.tar.gz -L \
-        "https://github.com/netbootxyz/webapp/archive/${WEBAPP_VERSION}.tar.gz" \
+        "https://github.com/ENK0DED/webapp/archive/${WEBAPP_VERSION}.tar.gz" \
     && tar xf /tmp/webapp.tar.gz -C /app/ --strip-components=1 \
     # Install only production dependencies
     && cd /app \
@@ -47,7 +47,7 @@ LABEL org.opencontainers.image.title="netboot.xyz" \
       org.opencontainers.image.revision="${VCS_REF}" \
       org.opencontainers.image.vendor="netboot.xyz" \
       org.opencontainers.image.url="https://netboot.xyz" \
-      org.opencontainers.image.source="https://github.com/netbootxyz/docker-netbootxyz" \
+      org.opencontainers.image.source="https://github.com/ENK0DED/docker-netbootxyz" \
       org.opencontainers.image.licenses="Apache-2.0" \
       maintainer="antonym"
 

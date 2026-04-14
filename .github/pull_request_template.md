@@ -41,8 +41,8 @@
 ## Test Images
 <!-- Automated test images will be built and commented on this PR -->
 Once the build completes, test images will be available:
-- `netbootxyz/netbootxyz:pr-{number}`
-- `ghcr.io/netbootxyz/netbootxyz:pr-{number}`
+- `ENK0DED/netbootxyz:pr-{number}`
+- `ghcr.io/ENK0DED/netbootxyz:pr-{number}`
 
 See the auto-generated comment below for pull and test commands.
 

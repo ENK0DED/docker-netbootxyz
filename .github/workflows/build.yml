@@ -27,7 +27,7 @@ jobs:
     - name: Get latest Webapp release version
       id: webapp
       run: |
-        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/netbootxyz/webapp/releases/latest" | jq -r '. | .tag_name')
+        WEBAPP_RELEASE=$(curl -sX GET "https://api.github.com/repos/ENK0DED/webapp/releases/latest" | jq -r '. | .tag_name')
         echo "webapp_release=${WEBAPP_RELEASE}" >> $GITHUB_OUTPUT
 
     - name: Determine tag strategy
@@ -99,8 +99,8 @@ jobs:
           org.opencontainers.image.description=netboot.xyz test image
           org.opencontainers.image.version=${{ needs.setup.outputs.tag_suffix }}
           org.opencontainers.image.revision=${{ github.sha }}
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
-        outputs: type=image,name=ghcr.io/netbootxyz/netbootxyz,push-by-digest=true,name-canonical=true,push=true
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
+        outputs: type=image,name=ghcr.io/ENK0DED/netbootxyz,push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       run: |
@@ -119,7 +119,7 @@ jobs:
 #    - name: Run Trivy vulnerability scanner (amd64)
 #      uses: aquasecurity/trivy-action@0.35.0
 #      with:
-#        image-ref: 'ghcr.io/netbootxyz/netbootxyz@${{ steps.build.outputs.digest }}'
+#        image-ref: 'ghcr.io/ENK0DED/netbootxyz@${{ steps.build.outputs.digest }}'
 #        version: 'v0.69.3'
 #        format: 'table'
 #        exit-code: ${{ needs.setup.outputs.is_pr == 'true' && '1' || '0' }}
@@ -168,8 +168,8 @@ jobs:
           org.opencontainers.image.description=netboot.xyz test image
           org.opencontainers.image.version=${{ needs.setup.outputs.tag_suffix }}
           org.opencontainers.image.revision=${{ github.sha }}
-          org.opencontainers.image.source=https://github.com/netbootxyz/docker-netbootxyz
-        outputs: type=image,name=ghcr.io/netbootxyz/netbootxyz,push-by-digest=true,name-canonical=true,push=true
+          org.opencontainers.image.source=https://github.com/ENK0DED/docker-netbootxyz
+        outputs: type=image,name=ghcr.io/ENK0DED/netbootxyz,push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       run: |
@@ -190,7 +190,7 @@ jobs:
 #      env:
 #        TRIVY_PLATFORM: linux/arm64
 #      with:
-#        image-ref: 'ghcr.io/netbootxyz/netbootxyz@${{ steps.build.outputs.digest }}'
+#        image-ref: 'ghcr.io/ENK0DED/netbootxyz@${{ steps.build.outputs.digest }}'
 #        version: 'v0.69.3'
 #        format: 'table'
 #        exit-code: ${{ needs.setup.outputs.is_pr == 'true' && '1' || '0' }}
@@ -231,9 +231,9 @@ jobs:
         TAG_SUFFIX="${{ needs.setup.outputs.tag_suffix }}"
         SHA="${{ github.sha }}"
         docker buildx imagetools create \
-          -t "ghcr.io/netbootxyz/netbootxyz:${TAG_SUFFIX}" \
-          -t "ghcr.io/netbootxyz/netbootxyz:${TAG_SUFFIX}-${SHA}" \
-          $(printf 'ghcr.io/netbootxyz/netbootxyz@sha256:%s ' *)
+          -t "ghcr.io/ENK0DED/netbootxyz:${TAG_SUFFIX}" \
+          -t "ghcr.io/ENK0DED/netbootxyz:${TAG_SUFFIX}-${SHA}" \
+          $(printf 'ghcr.io/ENK0DED/netbootxyz@sha256:%s ' *)
 
     - name: Create manifest list and push (Docker Hub)
       working-directory: /tmp/digests
@@ -241,9 +241,9 @@ jobs:
         TAG_SUFFIX="${{ needs.setup.outputs.tag_suffix }}"
         SHA="${{ github.sha }}"
         docker buildx imagetools create \
-          -t "netbootxyz/netbootxyz:${TAG_SUFFIX}" \
-          -t "netbootxyz/netbootxyz:${TAG_SUFFIX}-${SHA}" \
-          $(printf 'ghcr.io/netbootxyz/netbootxyz@sha256:%s ' *)
+          -t "ENK0DED/netbootxyz:${TAG_SUFFIX}" \
+          -t "ENK0DED/netbootxyz:${TAG_SUFFIX}-${SHA}" \
+          $(printf 'ghcr.io/ENK0DED/netbootxyz@sha256:%s ' *)
 
   comment:
     needs: [setup, manifest]
@@ -260,12 +260,12 @@ jobs:
 
           ### Docker Hub
           \`\`\`bash
-          docker pull netbootxyz/netbootxyz:pr-${{ github.event.number }}
+          docker pull ENK0DED/netbootxyz:pr-${{ github.event.number }}
           \`\`\`
 
           ### GitHub Container Registry
           \`\`\`bash
-          docker pull ghcr.io/netbootxyz/netbootxyz:pr-${{ github.event.number }}
+          docker pull ghcr.io/ENK0DED/netbootxyz:pr-${{ github.event.number }}
           \`\`\`
 
           ### Quick Test Commands
@@ -280,7 +280,7 @@ jobs:
             -p 69:69/udp \\
             -p 8080:80 \\
             -v /local/path/config:/config \\
-            netbootxyz/netbootxyz:pr-${{ github.event.number }}
+            ENK0DED/netbootxyz:pr-${{ github.event.number }}
           \`\`\`
 
           ### Platforms
